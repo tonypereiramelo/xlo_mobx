@@ -5,6 +5,26 @@ class BaseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: PageView(
+        children: <Widget>[
+          Container(
+            color: Colors.green,
+          ),
+          Container(
+            color: Colors.yellow,
+          ),
+          Container(
+            color: Colors.blue,
+          ),
+          Container(
+            color: Colors.grey,
+          ),
+          Container(
+            color: Colors.deepOrange,
+          ),
+        ],
+      ),
+    );
   }
 }
