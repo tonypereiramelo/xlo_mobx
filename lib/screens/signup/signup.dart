@@ -2,7 +2,7 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:xlo_mobx/screens/login/login_screen.dart';
-import 'package:xlo_mobx/widget/signup/text_field_custom.dart';
+import 'package:xlo_mobx/screens/signup/components/text_field_custom.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
