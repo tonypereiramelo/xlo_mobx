@@ -61,16 +61,22 @@ class SignUp extends StatelessWidget {
                         );
                       },
                     ),
-                    TextFieldCustom(
-                      text: 'Telefone',
-                      text2: 'Proteja sua conta',
-                      hintText: '(11)99999-9999',
-                      keyboardType: TextInputType.phone,
-                      obscureText: false,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        TelefoneInputFormatter(),
-                      ],
+                    Observer(
+                      builder: (_) {
+                        return TextFieldCustom(
+                          text: 'Telefone',
+                          text2: 'Proteja sua conta',
+                          hintText: '(11)99999-9999',
+                          errorText: signupStore.phoneError,
+                          keyboardType: TextInputType.phone,
+                          obscureText: false,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            TelefoneInputFormatter(),
+                          ],
+                          onChanged: signupStore.setPhone,
+                        );
+                      },
                     ),
                     TextFieldCustom(
                       text: 'Senha',

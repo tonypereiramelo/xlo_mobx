@@ -5,6 +5,22 @@ class SignupStore = _SignupStoreBase with _$SignupStore;
 
 abstract class _SignupStoreBase with Store {
   @observable
+  String? phone;
+  @action
+  void setPhone(String? value) => phone = value;
+  @computed
+  bool get phoneValid =>
+      phone != null && phone!.length > 13 && phone!.length < 15;
+  String? get phoneError {
+    if (phone == null || phoneValid)
+      return null;
+    else if (phone == null || phone!.isEmpty)
+      return 'Campo Obrigatório';
+    else
+      return 'Telefone tem que conter de 10 a 11 números com ddd';
+  }
+
+  @observable
   String? email;
   @action
   void setEmail(String? value) => email = value;
