@@ -38,6 +38,9 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           elevation: 0,
         ),
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.orange,
+        ),
       ),
       home: BaseScreen(),
     );
