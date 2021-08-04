@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:xlo_mobx/screens/signup/signup.dart';
+import 'package:xlo_mobx/screens/login/login_screen.dart';
+import 'package:xlo_mobx/widget/signup/text_field_custom.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUp extends StatelessWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Entrar'),
+        title: const Text('Cadastrar'),
         centerTitle: true,
       ),
       body: Container(
@@ -26,66 +27,35 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    'Acessar com e-mail',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[900],
-                    ),
+                  TextFieldCustom(
+                    text: 'Apelido',
+                    text2: 'Como aparecerá em seus anúncios.',
+                    hintText: 'Exemplo: Francisco S',
+                    keyboardType: TextInputType.name,
+                    obscureText: false,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8, left: 3, bottom: 4),
-                    child: Text(
-                      'E-mail',
-                      style: TextStyle(
-                        color: Colors.grey[800],
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      isDense: true,
-                    ),
+                  TextFieldCustom(
+                    text: 'E-Mail',
+                    text2: 'Enviaremos um e-mail de Confirmação.',
+                    hintText: 'Exemplo: francisco@gmail.com',
                     keyboardType: TextInputType.emailAddress,
+                    obscureText: false,
                   ),
-                  const SizedBox(
-                    height: 16,
+                  TextFieldCustom(
+                    text: 'Telefone',
+                    text2: 'Proteja sua conta',
+                    hintText: '(11)99999-9999',
+                    keyboardType: TextInputType.phone,
+                    obscureText: false,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 3, bottom: 4),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Senha',
-                          style: TextStyle(
-                            color: Colors.grey[800],
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                          ),
-                        ),
-                        GestureDetector(
-                          child: Text(
-                            'Esqueceu sua senha?',
-                            style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: Colors.purple,
-                            ),
-                          ),
-                          onTap: () {},
-                        )
-                      ],
-                    ),
+                  TextFieldCustom(
+                    text: 'Senha',
+                    text2: 'Use números, letras e caracteres especiais',
+                    obscureText: true,
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      isDense: true,
-                    ),
+                  TextFieldCustom(
+                    text: 'Confirmar Senhar',
+                    text2: 'Repita senha',
                     obscureText: true,
                   ),
                   Container(
@@ -93,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                     margin: EdgeInsets.only(top: 20, bottom: 12),
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text('Entrar'),
+                      child: Text('Cadastra-se'),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.orange,
                         onPrimary: Colors.white,
@@ -113,19 +83,19 @@ class LoginScreen extends StatelessWidget {
                       alignment: WrapAlignment.center,
                       children: [
                         const Text(
-                          'Não tem uma conta? ',
+                          'Já tem uma conta? ',
                           style: TextStyle(fontSize: 16),
                         ),
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => SignUp(),
+                                builder: (context) => LoginScreen(),
                               ),
                             );
                           },
                           child: Text(
-                            'Cadastra-se',
+                            'Entrar',
                             style: TextStyle(
                               decoration: TextDecoration.underline,
                               color: Colors.purple,
