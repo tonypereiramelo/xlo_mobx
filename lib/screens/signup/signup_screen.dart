@@ -61,21 +61,33 @@ class SignUp extends StatelessWidget {
                         );
                       },
                     ),
-                    TextFieldCustom(
-                      text: 'Telefone',
-                      text2: 'Proteja sua conta',
-                      hintText: '(11)99999-9999',
-                      keyboardType: TextInputType.phone,
-                      obscureText: false,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        TelefoneInputFormatter(),
-                      ],
+                    Observer(
+                      builder: (_) {
+                        return TextFieldCustom(
+                          text: 'Telefone',
+                          text2: 'Proteja sua conta',
+                          hintText: '(11)99999-9999',
+                          errorText: signupStore.phoneError,
+                          keyboardType: TextInputType.phone,
+                          obscureText: false,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            TelefoneInputFormatter(),
+                          ],
+                          onChanged: signupStore.setPhone,
+                        );
+                      },
                     ),
-                    TextFieldCustom(
-                      text: 'Senha',
-                      text2: 'Use números, letras e caracteres especiais',
-                      obscureText: true,
+                    Observer(
+                      builder: (_) {
+                        return TextFieldCustom(
+                          text: 'Senha',
+                          text2: 'Use números, letras e caracteres especiais',
+                          errorText: signupStore.errorPass1,
+                          obscureText: true,
+                          onChanged: signupStore.setSenha,
+                        );
+                      },
                     ),
                     TextFieldCustom(
                       text: 'Confirmar Senhar',
