@@ -9,7 +9,7 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastrar'),
+        title: const Text('Cadastro'),
         centerTitle: true,
       ),
       body: Container(
