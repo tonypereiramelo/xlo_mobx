@@ -78,10 +78,16 @@ class SignUp extends StatelessWidget {
                         );
                       },
                     ),
-                    TextFieldCustom(
-                      text: 'Senha',
-                      text2: 'Use números, letras e caracteres especiais',
-                      obscureText: true,
+                    Observer(
+                      builder: (_) {
+                        return TextFieldCustom(
+                          text: 'Senha',
+                          text2: 'Use números, letras e caracteres especiais',
+                          errorText: signupStore.errorPass1,
+                          obscureText: true,
+                          onChanged: signupStore.setSenha,
+                        );
+                      },
                     ),
                     TextFieldCustom(
                       text: 'Confirmar Senhar',
