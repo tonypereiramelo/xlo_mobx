@@ -23,6 +23,7 @@ class TextFieldCustom extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Wrap(
+            crossAxisAlignment: WrapCrossAlignment.end,
             children: [
               Text(
                 text!,
