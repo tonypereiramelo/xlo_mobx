@@ -48,12 +48,18 @@ class SignUp extends StatelessWidget {
                         );
                       },
                     ),
-                    TextFieldCustom(
-                      text: 'E-Mail',
-                      text2: 'Enviaremos um e-mail de Confirmação.',
-                      hintText: 'Exemplo: francisco@gmail.com',
-                      keyboardType: TextInputType.emailAddress,
-                      obscureText: false,
+                    Observer(
+                      builder: (_) {
+                        return TextFieldCustom(
+                          text: 'E-Mail',
+                          text2: 'Enviaremos um e-mail de Confirmação.',
+                          hintText: 'Exemplo: francisco@gmail.com',
+                          errorText: signupStore.emailError,
+                          keyboardType: TextInputType.emailAddress,
+                          obscureText: false,
+                          onChanged: signupStore.setEmail,
+                        );
+                      },
                     ),
                     TextFieldCustom(
                       text: 'Telefone',
