@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xlo_mobx/screens/signup/signup.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -116,7 +117,13 @@ class LoginScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 16),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => SignUp(),
+                              ),
+                            );
+                          },
                           child: Text(
                             'Cadastra-se',
                             style: TextStyle(
