@@ -1,11 +1,15 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:xlo_mobx/screens/login/login_screen.dart';
 import 'package:xlo_mobx/screens/signup/components/text_field_custom.dart';
+import 'package:xlo_mobx/stores/signup_store.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+  SignUp({Key? key}) : super(key: key);
+
+  final SignupStore signupStore = SignupStore();
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +35,18 @@ class SignUp extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    TextFieldCustom(
-                      text: 'Apelido',
-                      text2: 'Como aparecerá em seus anúncios.',
-                      hintText: 'Exemplo: Francisco S',
-                      keyboardType: TextInputType.name,
-                      obscureText: false,
+                    Observer(
+                      builder: (_) {
+                        return TextFieldCustom(
+                          text: 'Apelido',
+                          text2: 'Como aparecerá em seus anúncios.',
+                          hintText: 'Exemplo: Francisco S',
+                          errorText: signupStore.nameError,
+                          keyboardType: TextInputType.name,
+                          obscureText: false,
+                          onChanged: signupStore.setName,
+                        );
+                      },
                     ),
                     TextFieldCustom(
                       text: 'E-Mail',

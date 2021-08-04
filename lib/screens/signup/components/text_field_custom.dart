@@ -5,17 +5,21 @@ class TextFieldCustom extends StatelessWidget {
   final String? text;
   final String? text2;
   final String? hintText;
+  final String? errorText;
   final TextInputType? keyboardType;
   final bool? obscureText;
   final List<TextInputFormatter>? inputFormatters;
+  final void Function(String)? onChanged;
   TextFieldCustom({
     Key? key,
     this.text,
     this.text2,
     this.hintText,
+    this.errorText,
     this.keyboardType,
     this.obscureText,
     this.inputFormatters,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -58,10 +62,12 @@ class TextFieldCustom extends StatelessWidget {
                 border: const OutlineInputBorder(),
                 isDense: true,
                 hintText: hintText,
+                errorText: errorText,
               ),
               keyboardType: keyboardType,
               obscureText: obscureText!,
               inputFormatters: inputFormatters,
+              onChanged: onChanged,
             ),
           ),
         ],
