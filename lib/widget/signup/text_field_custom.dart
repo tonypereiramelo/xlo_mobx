@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextFieldCustom extends StatelessWidget {
   final String? text;
@@ -6,6 +7,7 @@ class TextFieldCustom extends StatelessWidget {
   final String? hintText;
   final TextInputType? keyboardType;
   final bool? obscureText;
+  final List<TextInputFormatter>? inputFormatters;
   TextFieldCustom({
     Key? key,
     this.text,
@@ -13,6 +15,7 @@ class TextFieldCustom extends StatelessWidget {
     this.hintText,
     this.keyboardType,
     this.obscureText,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -58,6 +61,7 @@ class TextFieldCustom extends StatelessWidget {
               ),
               keyboardType: keyboardType,
               obscureText: obscureText!,
+              inputFormatters: inputFormatters,
             ),
           ),
         ],
