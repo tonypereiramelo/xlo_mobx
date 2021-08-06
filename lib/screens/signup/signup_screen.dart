@@ -100,21 +100,26 @@ class SignUp extends StatelessWidget {
                         );
                       },
                     ),
-                    Container(
-                      height: 40,
-                      margin: EdgeInsets.only(top: 20, bottom: 12),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text('Cadastra-se'),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.orange,
-                          onPrimary: Colors.white,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                    Observer(
+                      builder: (_) {
+                        return Container(
+                          height: 40,
+                          margin: EdgeInsets.only(top: 20, bottom: 12),
+                          child: ElevatedButton(
+                            onPressed: signupStore.formIsValid ? () {} : null,
+                            child: Text('Cadastra-se'),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.orange,
+                              onPrimary: Colors.white,
+                              onSurface: Colors.orange,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     Divider(
                       color: Colors.black,
