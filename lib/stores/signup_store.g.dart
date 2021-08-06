@@ -44,6 +44,13 @@ mixin _$SignupStore on _SignupStoreBase, Store {
       (_$nameValidComputed ??= Computed<bool>(() => super.nameValid,
               name: '_SignupStoreBase.nameValid'))
           .value;
+  Computed<bool>? _$formIsValidComputed;
+
+  @override
+  bool get formIsValid =>
+      (_$formIsValidComputed ??= Computed<bool>(() => super.formIsValid,
+              name: '_SignupStoreBase.formIsValid'))
+          .value;
 
   final _$pass1Atom = Atom(name: '_SignupStoreBase.pass1');
 
@@ -190,7 +197,8 @@ passwordValid: ${passwordValid},
 pass2Valid: ${pass2Valid},
 phoneValid: ${phoneValid},
 emailValid: ${emailValid},
-nameValid: ${nameValid}
+nameValid: ${nameValid},
+formIsValid: ${formIsValid}
     ''';
   }
 }

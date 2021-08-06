@@ -80,4 +80,8 @@ abstract class _SignupStoreBase with Store {
     else
       return 'Nome muito curto';
   }
+
+  @computed
+  bool get formIsValid =>
+      nameValid && emailValid && phoneValid && passwordValid && pass2Valid;
 }
