@@ -38,6 +38,7 @@ class SignUp extends StatelessWidget {
                     Observer(
                       builder: (_) {
                         return TextFieldCustom(
+                          enabled: !signupStore.loading!,
                           text: 'Apelido',
                           text2: 'Como aparecerá em seus anúncios.',
                           hintText: 'Exemplo: Francisco S',
@@ -51,6 +52,7 @@ class SignUp extends StatelessWidget {
                     Observer(
                       builder: (_) {
                         return TextFieldCustom(
+                          enabled: !signupStore.loading!,
                           text: 'E-Mail',
                           text2: 'Enviaremos um e-mail de Confirmação.',
                           hintText: 'Exemplo: francisco@gmail.com',
@@ -64,6 +66,7 @@ class SignUp extends StatelessWidget {
                     Observer(
                       builder: (_) {
                         return TextFieldCustom(
+                          enabled: !signupStore.loading!,
                           text: 'Telefone',
                           text2: 'Proteja sua conta',
                           hintText: '(11)99999-9999',
@@ -81,6 +84,7 @@ class SignUp extends StatelessWidget {
                     Observer(
                       builder: (_) {
                         return TextFieldCustom(
+                          enabled: !signupStore.loading!,
                           text: 'Senha',
                           text2: 'Use números, letras e caracteres especiais',
                           errorText: signupStore.errorPass1,
@@ -92,6 +96,7 @@ class SignUp extends StatelessWidget {
                     Observer(
                       builder: (_) {
                         return TextFieldCustom(
+                          enabled: !signupStore.loading!,
                           text: 'Confirmar Senha',
                           text2: 'Repita a senha',
                           errorText: signupStore.errorPass2,
@@ -106,8 +111,10 @@ class SignUp extends StatelessWidget {
                           height: 40,
                           margin: EdgeInsets.only(top: 20, bottom: 12),
                           child: ElevatedButton(
-                            onPressed: signupStore.formIsValid ? () {} : null,
-                            child: Text('Cadastra-se'),
+                            onPressed: signupStore.signupPressed,
+                            child: signupStore.loading!
+                                ? CircularProgressIndicator()
+                                : Text('Cadastra-se'),
                             style: ElevatedButton.styleFrom(
                               primary: Colors.orange,
                               onPrimary: Colors.white,

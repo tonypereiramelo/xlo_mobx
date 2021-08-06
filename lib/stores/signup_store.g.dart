@@ -51,6 +51,13 @@ mixin _$SignupStore on _SignupStoreBase, Store {
       (_$formIsValidComputed ??= Computed<bool>(() => super.formIsValid,
               name: '_SignupStoreBase.formIsValid'))
           .value;
+  Computed<VoidCallback?>? _$signupPressedComputed;
+
+  @override
+  VoidCallback? get signupPressed => (_$signupPressedComputed ??=
+          Computed<VoidCallback?>(() => super.signupPressed,
+              name: '_SignupStoreBase.signupPressed'))
+      .value;
 
   final _$pass1Atom = Atom(name: '_SignupStoreBase.pass1');
 
@@ -127,6 +134,28 @@ mixin _$SignupStore on _SignupStoreBase, Store {
     });
   }
 
+  final _$loadingAtom = Atom(name: '_SignupStoreBase.loading');
+
+  @override
+  bool? get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool? value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
+  final _$_signUpAsyncAction = AsyncAction('_SignupStoreBase._signUp');
+
+  @override
+  Future<void> _signUp() {
+    return _$_signUpAsyncAction.run(() => super._signUp());
+  }
+
   final _$_SignupStoreBaseActionController =
       ActionController(name: '_SignupStoreBase');
 
@@ -193,12 +222,14 @@ pass2: ${pass2},
 phone: ${phone},
 email: ${email},
 name: ${name},
+loading: ${loading},
 passwordValid: ${passwordValid},
 pass2Valid: ${pass2Valid},
 phoneValid: ${phoneValid},
 emailValid: ${emailValid},
 nameValid: ${nameValid},
-formIsValid: ${formIsValid}
+formIsValid: ${formIsValid},
+signupPressed: ${signupPressed}
     ''';
   }
 }
