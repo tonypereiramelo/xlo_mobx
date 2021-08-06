@@ -111,6 +111,7 @@ class SignUp extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               primary: Colors.orange,
                               onPrimary: Colors.white,
+                              onSurface: Colors.orange,
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
