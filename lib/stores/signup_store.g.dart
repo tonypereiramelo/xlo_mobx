@@ -16,6 +16,13 @@ mixin _$SignupStore on _SignupStoreBase, Store {
       (_$passwordValidComputed ??= Computed<bool>(() => super.passwordValid,
               name: '_SignupStoreBase.passwordValid'))
           .value;
+  Computed<bool>? _$pass2ValidComputed;
+
+  @override
+  bool get pass2Valid =>
+      (_$pass2ValidComputed ??= Computed<bool>(() => super.pass2Valid,
+              name: '_SignupStoreBase.pass2Valid'))
+          .value;
   Computed<bool>? _$phoneValidComputed;
 
   @override
@@ -38,18 +45,33 @@ mixin _$SignupStore on _SignupStoreBase, Store {
               name: '_SignupStoreBase.nameValid'))
           .value;
 
-  final _$passwordAtom = Atom(name: '_SignupStoreBase.password');
+  final _$pass1Atom = Atom(name: '_SignupStoreBase.pass1');
 
   @override
-  String? get password {
-    _$passwordAtom.reportRead();
-    return super.password;
+  String? get pass1 {
+    _$pass1Atom.reportRead();
+    return super.pass1;
   }
 
   @override
-  set password(String? value) {
-    _$passwordAtom.reportWrite(value, super.password, () {
-      super.password = value;
+  set pass1(String? value) {
+    _$pass1Atom.reportWrite(value, super.pass1, () {
+      super.pass1 = value;
+    });
+  }
+
+  final _$pass2Atom = Atom(name: '_SignupStoreBase.pass2');
+
+  @override
+  String? get pass2 {
+    _$pass2Atom.reportRead();
+    return super.pass2;
+  }
+
+  @override
+  set pass2(String? value) {
+    _$pass2Atom.reportWrite(value, super.pass2, () {
+      super.pass2 = value;
     });
   }
 
@@ -102,11 +124,22 @@ mixin _$SignupStore on _SignupStoreBase, Store {
       ActionController(name: '_SignupStoreBase');
 
   @override
-  void setSenha(String? value) {
+  void setPass1(String? value) {
     final _$actionInfo = _$_SignupStoreBaseActionController.startAction(
-        name: '_SignupStoreBase.setSenha');
+        name: '_SignupStoreBase.setPass1');
     try {
-      return super.setSenha(value);
+      return super.setPass1(value);
+    } finally {
+      _$_SignupStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setPass2(String? value) {
+    final _$actionInfo = _$_SignupStoreBaseActionController.startAction(
+        name: '_SignupStoreBase.setPass2');
+    try {
+      return super.setPass2(value);
     } finally {
       _$_SignupStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -148,11 +181,13 @@ mixin _$SignupStore on _SignupStoreBase, Store {
   @override
   String toString() {
     return '''
-password: ${password},
+pass1: ${pass1},
+pass2: ${pass2},
 phone: ${phone},
 email: ${email},
 name: ${name},
 passwordValid: ${passwordValid},
+pass2Valid: ${pass2Valid},
 phoneValid: ${phoneValid},
 emailValid: ${emailValid},
 nameValid: ${nameValid}

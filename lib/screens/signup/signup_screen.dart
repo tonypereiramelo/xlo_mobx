@@ -85,17 +85,17 @@ class SignUp extends StatelessWidget {
                           text2: 'Use números, letras e caracteres especiais',
                           errorText: signupStore.errorPass1,
                           obscureText: true,
-                          onChanged: signupStore.setSenha,
+                          onChanged: signupStore.setPass1,
                         );
                       },
                     ),
                     Observer(
                       builder: (_) {
                         return TextFieldCustom(
-                          text: 'Confirmar Senhar',
-                          text2: 'Repita senha',
-                          obscureText: true,
+                          text: 'Confirmar Senha',
+                          text2: 'Repita a senha',
                           errorText: signupStore.errorPass2,
+                          obscureText: true,
                           onChanged: signupStore.setPass2,
                         );
                       },

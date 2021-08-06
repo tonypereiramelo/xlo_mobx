@@ -6,17 +6,17 @@ class SignupStore = _SignupStoreBase with _$SignupStore;
 
 abstract class _SignupStoreBase with Store {
   @observable
-  String? password;
+  String? pass1;
   @action
-  void setSenha(String? value) => password = value;
+  void setPass1(String? value) => pass1 = value;
   @computed
   bool get passwordValid =>
-      password != null &&
-      password!.contains(RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"));
+      pass1 != null &&
+      pass1!.contains(RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"));
   String? get errorPass1 {
-    if (password == null || passwordValid)
+    if (pass1 == null || passwordValid)
       return null;
-    else if (password == null || password!.isEmpty)
+    else if (pass1 == null || pass1!.isEmpty)
       return 'Campo Obrigatório';
     else
       return 'Mínimo de oito caracteres, pelo menos uma letra e um número';
@@ -27,7 +27,7 @@ abstract class _SignupStoreBase with Store {
   @action
   void setPass2(String? value) => pass2 = value;
   @computed
-  bool get pass2Valid => pass2 != null && pass2 == password;
+  bool get pass2Valid => pass2 != null && pass2 == pass1;
   String? get errorPass2 {
     if (pass2 == null || pass2Valid)
       return null;
