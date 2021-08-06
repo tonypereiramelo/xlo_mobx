@@ -89,10 +89,16 @@ class SignUp extends StatelessWidget {
                         );
                       },
                     ),
-                    TextFieldCustom(
-                      text: 'Confirmar Senhar',
-                      text2: 'Repita senha',
-                      obscureText: true,
+                    Observer(
+                      builder: (_) {
+                        return TextFieldCustom(
+                          text: 'Confirmar Senhar',
+                          text2: 'Repita senha',
+                          obscureText: true,
+                          errorText: signupStore.errorPass2,
+                          onChanged: signupStore.setPass2,
+                        );
+                      },
                     ),
                     Container(
                       height: 40,

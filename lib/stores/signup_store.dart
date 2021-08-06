@@ -23,12 +23,24 @@ abstract class _SignupStoreBase with Store {
   }
 
   @observable
+  String? pass2;
+  @action
+  void setPass2(String? value) => pass2 = value;
+  @computed
+  bool get pass2Valid => pass2 != null && pass2 == password;
+  String? get errorPass2 {
+    if (pass2 == null || pass2Valid)
+      return null;
+    else
+      return 'Senhas não coincidem';
+  }
+
+  @observable
   String? phone;
   @action
   void setPhone(String? value) => phone = value;
   @computed
-  bool get phoneValid =>
-      phone != null && phone!.length > 13 && phone!.length < 15;
+  bool get phoneValid => phone != null && phone!.length > 13;
   String? get phoneError {
     if (phone == null || phoneValid)
       return null;
