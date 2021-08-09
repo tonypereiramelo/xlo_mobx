@@ -10,17 +10,19 @@ class TextFieldCustom extends StatelessWidget {
   final bool? obscureText;
   final List<TextInputFormatter>? inputFormatters;
   final void Function(String)? onChanged;
-  TextFieldCustom({
-    Key? key,
-    this.text,
-    this.text2,
-    this.hintText,
-    this.errorText,
-    this.keyboardType,
-    this.obscureText,
-    this.inputFormatters,
-    this.onChanged,
-  }) : super(key: key);
+  final bool? enabled;
+  TextFieldCustom(
+      {Key? key,
+      this.text,
+      this.text2,
+      this.hintText,
+      this.errorText,
+      this.keyboardType,
+      this.obscureText,
+      this.inputFormatters,
+      this.onChanged,
+      this.enabled})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +70,7 @@ class TextFieldCustom extends StatelessWidget {
               obscureText: obscureText!,
               inputFormatters: inputFormatters,
               onChanged: onChanged,
+              enabled: enabled,
             ),
           ),
         ],

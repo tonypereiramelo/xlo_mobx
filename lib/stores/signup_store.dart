@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:xlo_mobx/helpers/string_extension.dart';
 part 'signup_store.g.dart';
@@ -84,4 +85,18 @@ abstract class _SignupStoreBase with Store {
   @computed
   bool get formIsValid =>
       nameValid && emailValid && phoneValid && passwordValid && pass2Valid;
+
+  @observable
+  bool loading = false;
+  @action
+  Future<void> _signUp() async {
+    loading = true;
+
+    await Future.delayed(Duration(seconds: 3));
+
+    loading = false;
+  }
+
+  @computed
+  VoidCallback? get signupPressed => formIsValid ? _signUp : null;
 }
