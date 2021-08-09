@@ -87,7 +87,7 @@ abstract class _SignupStoreBase with Store {
       nameValid && emailValid && phoneValid && passwordValid && pass2Valid;
 
   @observable
-  bool? loading;
+  bool loading = false;
   @action
   Future<void> _signUp() async {
     loading = true;

@@ -137,13 +137,13 @@ mixin _$SignupStore on _SignupStoreBase, Store {
   final _$loadingAtom = Atom(name: '_SignupStoreBase.loading');
 
   @override
-  bool? get loading {
+  bool get loading {
     _$loadingAtom.reportRead();
     return super.loading;
   }
 
   @override
-  set loading(bool? value) {
+  set loading(bool value) {
     _$loadingAtom.reportWrite(value, super.loading, () {
       super.loading = value;
     });
