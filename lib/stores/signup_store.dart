@@ -98,5 +98,5 @@ abstract class _SignupStoreBase with Store {
   }
 
   @computed
-  VoidCallback? get signupPressed => formIsValid ? _signUp : null;
+  VoidCallback? get signupPressed => (formIsValid && !loading) ? _signUp : null;
 }
