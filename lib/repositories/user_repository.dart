@@ -9,6 +9,7 @@ class UserRepository {
       user.password,
       user.email,
     );
-    parseUser.set(keyUserName, user.name);
+    parseUser.set<String?>(keyUserName, user.name);
+    parseUser.set<String?>(keyUserPhone, user.phone);
   }
 }

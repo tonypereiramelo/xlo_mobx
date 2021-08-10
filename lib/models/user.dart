@@ -1,3 +1,5 @@
+enum UserType { PARTICULAR, PROFESSIONAL }
+
 class User {
   User({
     this.name,
@@ -10,4 +12,5 @@ class User {
   String? email;
   String? phone;
   String? password;
+  UserType? userType;
 }
