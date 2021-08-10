@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:xlo_mobx/helpers/string_extension.dart';
+import 'package:xlo_mobx/models/user.dart';
+import 'package:xlo_mobx/repositories/user_repository.dart';
 part 'signup_store.g.dart';
 
 class SignupStore = _SignupStoreBase with _$SignupStore;
@@ -92,6 +94,14 @@ abstract class _SignupStoreBase with Store {
   Future<void> _signUp() async {
     loading = true;
 
+    final User user = User(
+      name: name,
+      email: email,
+      phone: phone,
+      password: pass1,
+    );
+
+    UserRepository().signUp(user);
     await Future.delayed(Duration(seconds: 3));
 
     loading = false;
