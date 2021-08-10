@@ -6,11 +6,12 @@ class User {
     this.email,
     this.phone,
     this.password,
+    this.type = UserType.PARTICULAR,
   });
 
   String? name;
   String? email;
   String? phone;
   String? password;
-  UserType? userType;
+  UserType? type;
 }
