@@ -101,8 +101,7 @@ abstract class _SignupStoreBase with Store {
       password: pass1,
     );
 
-    UserRepository().signUp(user);
-    await Future.delayed(Duration(seconds: 3));
+    await UserRepository().signUp(user);
 
     loading = false;
   }

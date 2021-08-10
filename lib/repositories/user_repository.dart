@@ -3,7 +3,7 @@ import 'package:xlo_mobx/models/user.dart';
 import 'package:xlo_mobx/repositories/table_keys.dart';
 
 class UserRepository {
-  void signUp(User user) {
+  Future<void> signUp(User user) async {
     final parseUser = ParseUser(
       user.email,
       user.password,
@@ -11,5 +11,8 @@ class UserRepository {
     );
     parseUser.set<String?>(keyUserName, user.name);
     parseUser.set<String?>(keyUserPhone, user.phone);
+    parseUser.set(keyUserType, user.type!.index);
+
+    await parseUser.signUp();
   }
 }
