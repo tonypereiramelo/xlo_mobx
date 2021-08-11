@@ -2,6 +2,7 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:xlo_mobx/components/error_box.dart';
 import 'package:xlo_mobx/screens/login/login_screen.dart';
 import 'package:xlo_mobx/screens/signup/components/text_field_custom.dart';
 import 'package:xlo_mobx/stores/signup_store.dart';
@@ -35,6 +36,11 @@ class SignUp extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    Observer(builder: (_) {
+                      return ErrorBox(
+                        message: signupStore.error,
+                      );
+                    }),
                     Observer(
                       builder: (_) {
                         return TextFieldCustom(
