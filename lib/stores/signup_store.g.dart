@@ -152,13 +152,13 @@ mixin _$SignupStore on _SignupStoreBase, Store {
   final _$errorAtom = Atom(name: '_SignupStoreBase.error');
 
   @override
-  bool? get error {
+  String? get error {
     _$errorAtom.reportRead();
     return super.error;
   }
 
   @override
-  set error(bool? value) {
+  set error(String? value) {
     _$errorAtom.reportWrite(value, super.error, () {
       super.error = value;
     });
