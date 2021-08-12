@@ -4,7 +4,7 @@ import 'package:xlo_mobx/repositories/parse_errors.dart';
 import 'package:xlo_mobx/repositories/table_keys.dart';
 
 class UserRepository {
-  Future<void> signUp(User user) async {
+  Future<User?> signUp(User user) async {
     final parseUser = ParseUser(
       user.email,
       user.password,
