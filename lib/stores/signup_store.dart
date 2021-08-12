@@ -93,7 +93,7 @@ abstract class _SignupStoreBase with Store {
   @observable
   String? error;
   @action
-  Future<void> _signUp() async {
+  Future<User?> _signUp() async {
     loading = true;
 
     final User user = User(
@@ -104,7 +104,8 @@ abstract class _SignupStoreBase with Store {
     );
 
     try {
-      await UserRepository().signUp(user);
+      final resultUser = UserRepository().signUp(user);
+      print(resultUser);
     } catch (e) {
       error = e.toString();
     }
