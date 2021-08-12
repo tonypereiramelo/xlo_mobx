@@ -8,6 +8,7 @@ class User {
     this.phone,
     this.password,
     this.type = UserType.PARTICULAR,
+    this.createdAt,
   });
 
   String? id;
@@ -16,6 +17,7 @@ class User {
   String? phone;
   String? password;
   UserType? type;
+  DateTime? createdAt;
 
   @override
   String toString() {
