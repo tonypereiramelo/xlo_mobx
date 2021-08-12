@@ -21,12 +21,12 @@ class User {
 
   @override
   String toString() {
-    return 'User{
-      id: $id,
-      name: $name,
-      email: $email,
-      phone: $phone,
-      type: $type,
-    }'
+    return User(
+      id: id,
+      name: name,
+      email: email,
+      phone: phone,
+      type: type,
+    ).toString();
   }
 }
