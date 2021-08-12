@@ -17,10 +17,21 @@ class UserRepository {
     final response = await parseUser.signUp();
 
     if (response.success) {
-      print(response.result);
+      return mapParseToUser(response.result);
     } else {
       return Future.error(
           ParseErrors.getDescription(response.error!.code).toString());
     }
+  }
+
+  User mapParseToUser(ParseUser parseUser) {
+    return User(
+      id: parseUser.objectId,
+      name: parseUser.get(keyUserName),
+      email: parseUser.get(keyUserEmail),
+      phone: parseUser.get(keyUserPhone),
+      type: UserType.values[parseUser.get(keyUserType)],
+      createdAt: parseUser.get(keyUserCreatedAt),
+    );
   }
 }

@@ -104,7 +104,8 @@ abstract class _SignupStoreBase with Store {
     );
 
     try {
-      await UserRepository().signUp(user);
+      final resultUser = await UserRepository().signUp(user);
+      print(resultUser);
     } catch (e) {
       error = e.toString();
     }
