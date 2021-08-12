@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:xlo_mobx/screens/signup/signup_screen.dart';
+import 'package:xlo_mobx/stores/login_store.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
+  final LoginStore loginStore = LoginStore();
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +48,19 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      isDense: true,
-                    ),
-                    keyboardType: TextInputType.emailAddress,
+                  Observer(
+                    builder: (_) {
+                      return TextField(
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          isDense: true,
+                          errorText: loginStore.emailError,
+                          enabled: !loginStore.loadding,
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        onChanged: loginStore.setEmail,
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 16,
@@ -81,28 +91,42 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      isDense: true,
-                    ),
-                    obscureText: true,
-                  ),
-                  Container(
-                    height: 40,
-                    margin: EdgeInsets.only(top: 20, bottom: 12),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Entrar'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.orange,
-                        onPrimary: Colors.white,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                  Observer(
+                    builder: (_) {
+                      return TextField(
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          isDense: true,
+                          errorText: loginStore.errorpassword,
+                          enabled: !loginStore.loadding,
                         ),
-                      ),
-                    ),
+                        obscureText: true,
+                        onChanged: loginStore.setpassword,
+                      );
+                    },
+                  ),
+                  Observer(
+                    builder: (_) {
+                      return Container(
+                        height: 40,
+                        margin: EdgeInsets.only(top: 20, bottom: 12),
+                        child: ElevatedButton(
+                          onPressed: loginStore.loginPressed,
+                          child: loginStore.loadding
+                              ? CircularProgressIndicator()
+                              : Text('Entrar'),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.orange,
+                            onPrimary: Colors.white,
+                            onSurface: Colors.orange,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   Divider(
                     color: Colors.black,
