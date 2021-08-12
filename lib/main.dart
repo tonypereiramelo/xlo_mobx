@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.purple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         appBarTheme: AppBarTheme(
+          color: Colors.purple,
           elevation: 0,
         ),
         textSelectionTheme: TextSelectionThemeData(
