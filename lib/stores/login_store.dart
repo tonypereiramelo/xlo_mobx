@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:xlo_mobx/helpers/string_extension.dart';
+import 'package:xlo_mobx/repositories/user_repository.dart';
 part 'login_store.g.dart';
 
 class LoginStore = _LoginStoreBase with _$LoginStore;
@@ -44,11 +45,19 @@ abstract class _LoginStoreBase with Store {
 
   @observable
   bool loadding = false;
+  @observable
+  String? erro;
   @action
   Future<void> _login() async {
     loadding = true;
 
-    await Future.delayed(Duration(seconds: 3));
+    try {
+      final user = await UserRepository().loginWithEmail(email!, password!);
+      print(user);
+    } catch (e) {
+      erro = e.toString();
+      print(e);
+    }
 
     loadding = false;
   }
