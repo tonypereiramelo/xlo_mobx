@@ -37,6 +37,20 @@ class UserRepository {
     }
   }
 
+  Future<User?> currentUser() async {
+    final parseUser = await ParseUser.currentUser();
+    if (parseUser != null) {
+      final response =
+          await ParseUser.getCurrentUserFromServer(parseUser.sessiontoken);
+      if (response!.success) {
+        return mapParseToUser(response.result);
+      } else {
+        await parseUser.logout();
+      }
+    }
+    return null;
+  }
+
   User mapParseToUser(ParseUser parseUser) {
     return User(
       id: parseUser.objectId,
