@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:xlo_mobx/helpers/string_extension.dart';
 import 'package:xlo_mobx/repositories/user_repository.dart';
+import 'package:xlo_mobx/stores/user_manager_store.dart';
 part 'login_store.g.dart';
 
 class LoginStore = _LoginStoreBase with _$LoginStore;
@@ -53,7 +55,7 @@ abstract class _LoginStoreBase with Store {
 
     try {
       final user = await UserRepository().loginWithEmail(email!, password!);
-      print(user);
+      GetIt.I<UserManagerStore>().setUser(user);
     } catch (e) {
       erro = e.toString();
       print(e);
