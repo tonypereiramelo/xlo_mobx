@@ -95,7 +95,7 @@ abstract class _SignupStoreBase with Store {
   @observable
   String? error;
   @action
-  Future<void> _signUp() async {
+  Future<User?> _signUp() async {
     loading = true;
 
     final User user = User(
