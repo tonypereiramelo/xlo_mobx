@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,13 +16,13 @@ class ImageSourceModel extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: getFromCamera,
               child: Text(
                 'Câmera',
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: getFromGaleria,
               child: Text(
                 'Galeria',
               ),
@@ -39,24 +39,42 @@ class ImageSourceModel extends StatelessWidget {
             'Cancel',
             style: TextStyle(color: Colors.red),
           ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: Navigator.of(context).pop,
         ),
         actions: [
           CupertinoActionSheetAction(
-            onPressed: () {},
+            onPressed: getFromCamera,
             child: Text(
               'Câmera',
             ),
           ),
           CupertinoActionSheetAction(
-            onPressed: () {},
+            onPressed: getFromGaleria,
             child: Text(
               'Galeria',
             ),
           ),
         ],
       );
+  }
+
+  Future<void> getFromCamera() async {
+    final picketFile =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    imageSelected(
+      File(picketFile!.path),
+    );
+  }
+
+  Future<void> getFromGaleria() async {
+    final picketFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    imageSelected(
+      File(picketFile!.path),
+    );
+  }
+
+  void imageSelected(File image) {
+    print(image.path);
   }
 }
