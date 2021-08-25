@@ -9,6 +9,10 @@ class Imagesfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void onImageSelected(File image) {
+      Navigator.of(context).pop();
+    }
+
     return Container(
       color: Colors.grey[200],
       height: 120,
@@ -28,12 +32,12 @@ class Imagesfield extends StatelessWidget {
                   if (Platform.isAndroid) {
                     showModalBottomSheet(
                       context: context,
-                      builder: (_) => ImageSourceModel(),
+                      builder: (_) => ImageSourceModel(onImageSelected),
                     );
                   } else {
                     showCupertinoModalPopup(
                       context: context,
-                      builder: (_) => ImageSourceModel(),
+                      builder: (_) => ImageSourceModel(onImageSelected),
                     );
                   }
                 },

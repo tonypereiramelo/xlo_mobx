@@ -1,10 +1,15 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageSourceModel extends StatelessWidget {
-  const ImageSourceModel({Key? key}) : super(key: key);
+  const ImageSourceModel(
+    this.onImageSelected, {
+    Key? key,
+  }) : super(key: key);
+  final Function(File) onImageSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -61,20 +66,36 @@ class ImageSourceModel extends StatelessWidget {
   Future<void> getFromCamera() async {
     final picketFile =
         await ImagePicker().pickImage(source: ImageSource.camera);
+    if (picketFile == null) return;
     imageSelected(
-      File(picketFile!.path),
+      File(picketFile.path),
     );
   }
 
   Future<void> getFromGaleria() async {
     final picketFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (picketFile == null) return;
     imageSelected(
-      File(picketFile!.path),
+      File(picketFile.path),
     );
   }
 
-  void imageSelected(File image) {
-    print(image.path);
+  Future<void> imageSelected(File image) async {
+    final croppedFile = await ImageCropper.cropImage(
+      sourcePath: image.path,
+      aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+      androidUiSettings: AndroidUiSettings(
+        toolbarTitle: 'Editar Imagem',
+        toolbarColor: Colors.purple,
+        toolbarWidgetColor: Colors.white,
+      ),
+      iosUiSettings: IOSUiSettings(
+        title: 'Editar Imagem',
+        cancelButtonTitle: 'Cancelar',
+        doneButtonTitle: 'Concluir',
+      ),
+    );
+    onImageSelected(croppedFile!);
   }
 }
